@@ -1,0 +1,20 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Prompt {
+  createdAt  DateTime          @default(now())
+  id         String            @id @default(cuid())
+  promptText String?
+  status     EnumPromptStatus?
+  updatedAt  DateTime          @updatedAt
+}
+
+enum EnumPromptStatus {
+  Option1
+}
